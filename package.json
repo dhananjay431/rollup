@@ -1,21 +1,29 @@
 {
-    "name": "rollup",
-    "version": "1.0.0",
-    "description": "",
-    "main": "rollup.config.js",
-    "dependencies": {
-        "rollup-plugin-commonjs": "^10.1.0",
-        "rollup-plugin-typescript": "^1.0.1",
-        "tslib": "^2.0.3",
-        "typescript": "^4.0.5"
-    },
-    "devDependencies": {
-        "rollup-plugin-uglify": "^6.0.4"
-    },
-    "scripts": {
-        "start": "rollup --config rollup.config.js --file all.js --format amd",
-        "umd": "rollup --config rollup.config.js --file all.js --format umd --name db"
-    },
-    "author": "",
-    "license": "ISC"
+  "name": "rollup",
+  "version": "1.0.0",
+  "description": "\"# rollup\"",
+  "main": "rollup.config.js",
+  "dependencies": {
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.5"
+  },
+  "devDependencies": {
+    "rollup-plugin-uglify": "^6.0.4"
+  },
+  "scripts": {
+    "start": "rollup --config rollup.config.js --file all.js --format amd",
+    "umd": "rollup --config rollup.config.js --file all.js --format umd --name db"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhananjay431/rollup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dhananjay431/rollup/issues"
+  },
+  "homepage": "https://github.com/dhananjay431/rollup#readme"
 }
