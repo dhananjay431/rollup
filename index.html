@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./all.js"></script>
+    <script>
+        function p() {
+            return fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => response.json());
+        }
+
+        function d() {
+            return fetch('https://jsonplaceholder.typicode.com/todos')
+                .then(response => response.json());
+        }
+        db([p(), d(), p()]).async().done(function(resp) {
+            console.log("1=>", resp)
+            db([p(), d(), p(), d(), p()]).async().done(function(resp) {
+                console.log("2=>", resp)
+            })
+        })
+
+
+        console.log(db(345435435).number().fix(2).float().val())
+
+
+        var obj = {
+            foo: {
+                "bar": {
+                    "mar": 4545
+                }
+            }
+        };
+
+        function dfind(obj, arr, add) {
+            arr = arr.split(".");
+            var k = arr.shift();
+            if (arr.length == 0) {
+                for (var i in add) {
+                    obj[k][i] = add[i];
+                }
+            } else {
+                if (k in obj) {
+                    dfind(obj[k], arr.join("."), add);
+                }
+            }
+        }
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => {
+                json = db(json).tuple("id", "zzzz").val();
+                console.log("tuple=>", json);
+                json = json.map(function(d) {
+                    dfind(d, "new.zzzz.address.geo", {
+                        "newAdded": new Date()
+                    });
+                    return d;
+                });
+                console.log("json=>", json);
+            })
+
+        /* function dfind(obj, arr, add) {
+            arr = arr.split(".");
+            var k = arr.shift();
+            if (arr.length == 0) {
+                for (var i in add) {
+                    obj[k][i] = add[i];
+                }
+            } else {
+                if (k in obj) {
+                    dfind(obj[k], arr.join("."), add);
+                }
+            }
+        }
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => {
+                json = db(json).tuple("id", "zzzz").val();
+                console.log("tuple=>", json);
+                json = json.map(function(d) {
+                    dfind(d, "new.zzzz.address.geo", {
+                        "newAdded": new Date()
+                    });
+                    return d;
+                });
+                console.log("json=>", json);
+            }) */
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<!-- var t = "tuple,id,name-val".split("-").reduce(function(it, curr) {
+    var x = curr.split(",");
+    if (x.length > 1) {
+        var t = x.shift();
+        return it[t](...x);
+    } else
+        return it[x.shift()]();
+}, db(resp[0]).mapChange({
+    name: "zzzname"
+})); -->
